@@ -1,0 +1,68 @@
+﻿<Window x:Class="AppWpf1.Vistas.FormPersistente"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CRUD Genérico"
+        Height="600" Width="800">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Botones -->
+            <RowDefinition Height="2*"/>
+            <!-- DataGrid -->
+            <RowDefinition Height="200"/>
+            <!-- Cuadrado + instrucciones -->
+        </Grid.RowDefinitions>
+
+        <!-- Panel superior: botones CRUD -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+            <Button x:Name="btnCancelar" Content="Cancelar" Width="100" Margin="5" Click="btnCancelar_Click"/>
+            <Button x:Name="btnCrear" Content="Crear" Width="100" Margin="5" Click="btnCrear_Click"/>
+            <Button x:Name="btnModificar" Content="Modificar" Width="100" Margin="5" Click="btnModificar_Click"/>
+            <Button x:Name="btnEliminar" Content="Eliminar" Width="100" Margin="5" Click="btnEliminar_Click"/>
+            <Button x:Name="btnAceptar" Content="Aceptar" Width="100" Margin="5" Click="btnAceptar_Click"/>
+            <Button x:Name="btnSalir" Content="Salir" Width="150" Margin="5" Click="btnSalir_Click"/>
+        </StackPanel>
+
+        <!-- Lista de registros -->
+        <DataGrid x:Name="dgvRegistros"
+                  Grid.Row="1"
+                  AutoGenerateColumns="True"
+                  AutoGeneratingColumn="dgvRegistros_AutoGeneratingColumn"
+                  SelectionChanged="dgvRegistros_SelectionChanged"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  Margin="5"/>
+
+        <!-- Panel inferior: cuadrado incrustado + instrucciones -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Bloque incrustado -->
+            <ContentControl x:Name="ventanaCrud"
+                    Grid.Column="0"
+                    BorderBrush="Red"
+                    BorderThickness="2"
+                    Background="LightGray"
+                    Margin="5"/>
+
+            <!-- TextBox de instrucciones (solo lectura) -->
+            <TextBox x:Name="txtInstrucciones"
+         Grid.Column="1"
+         Margin="5"
+         TextWrapping="Wrap"
+         AcceptsReturn="True"
+         VerticalScrollBarVisibility="Auto"
+         HorizontalScrollBarVisibility="Auto"
+         IsReadOnly="True"
+         IsTabStop="False"
+         Text="Aquí se mostrarán las instrucciones para continuar con el flujo CRUD."
+         TextAlignment="Center"
+         VerticalContentAlignment="Center"
+         FontSize="14"/>
+        </Grid>
+    </Grid>
+</Window>
